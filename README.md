@@ -93,19 +93,27 @@ private sumArrayNumbers(List<int> numArray)
     A class that represents an animal object.
     constructor arguments :
 */
-public class Animal
+public class Animal : MonoBehavior
 {
-    Animal(width, height)
-    {
-        // always use this.
-        this.width = width;
-        this.height = height;
+    // public fields go on top of private fields
+    public SpriteRenderer spriteRenderer;
 
-        this.numKids = 0;
+    private int height;
+
+    // public methods go above private methods
+    public void GetHeight(){
+        return height;
     }
 
-    bite(enemy){
-        enemy.hp -= 10;
+    // include private before the Start and Update Methods
+    private void Start(){
+        height = 15;
+        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+    // if you don't have anything in the Update method, remove the
+    // method, (unlike shown here)
+    private void Update(){
+
     }
 }
 
