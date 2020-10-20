@@ -3,6 +3,7 @@
 Welcome to the Remote Repository for Dungeon Crawler. This contains all the technical information necessary for engineers to do their job right. The engineers working on this project are Luke Ren, Ajie Valdejueza, Leo Utsumi, Samuel Geevarghese, and Tim Tran.
 
 # Code Style Standard
+
 ## C#
 
 ```csharp
@@ -102,7 +103,7 @@ public class Animal
 
         this.numKids = 0;
     }
-    
+
     bite(enemy){
         enemy.hp -= 10;
     }
@@ -116,22 +117,26 @@ public class Animal
 ```
 
 # Git
+
 Feel free to use Github Desktop or any other git GUI to help visualize/track things.
 
 Steps to getting your code from your local repository to the public remote repository:
-0. Try to pull changes from the remote repository first, if you can't, then proceed.
+
+0. Try to fetch/pull changes from the remote repository first, if nothing happens, then proceed.
 1. Add/Stage your changes
 2. Commit your changes with a relevant message
 
 Your commit message should be the name of the Trello task in square brackets and then any extra information involved with completing the task, like this:
+
 ```
 [Implement Map Generation] used the cool guy algorithm in the gameLogic file
 ```
-3. Pull changes from the remote repository. If you end up with a merge conflict, deal with the merge conflict, and then re-stage/re-commit your changes.
+
+3. Fetch/Pull changes from the remote repository again. If you end up with a merge conflict, deal with the merge conflict, and then re-stage/re-commit your changes.
 4. Push your changes, and you're done!
 
-
 # Code Reviews
+
 After you are done pushing your changes, find the github pages for the commits involved with the task, and pick someone you want to review your code for you. Once you have done these things, mention someone in the code-reviews channel on discord and follow the mention with the name of the task involved and links to the commits, like this:
 
 ```
