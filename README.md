@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # dungeon-crawler
 
 Welcome to the Remote Repository for Dungeon Crawler. This contains all the technical information necessary for engineers to do their job right. The engineers working on this project are Luke Ren, Ajie Valdejueza, Leo Utsumi, Samuel Geevarghese, and Tim Tran.
@@ -157,6 +156,3 @@ https://github.com/commit2
 Reviewers should look for things like adhering to the style guide, obvious edge cases that were not accounted for, and general coding malpractice. Reviewers should NOT input how they would have implemented the algorithm/feature, unless there is obvious reasons to believe that the current implementation is severely flawed or does not perform its intended purpose.
 
 Feel free to ask questions in the Discord, code reviews can be confusing.
-=======
-"# dunegon-crawler" 
->>>>>>> parent of 5662e6f... added info to readme
