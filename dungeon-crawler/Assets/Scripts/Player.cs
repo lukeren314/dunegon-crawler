@@ -6,7 +6,7 @@ public class Player : MonoBehaviour
 {
     public Rigidbody2D rb;
 
-    private const float playerSpeed = 3.0f;
+    private const float playerSpeed = 4.0f;
     private Vector2 movement;
 
     private void Update()
