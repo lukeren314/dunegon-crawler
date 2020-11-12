@@ -4,11 +4,18 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public Animator animator;
+    //public Animator animator;
     public Rigidbody2D rb;
 
     private const float playerSpeed = 4.0f;
     private Vector2 movement;
+    private LevelGenerator levelGenerator;
+
+    private void Start()
+    {
+        levelGenerator = new LevelGenerator();
+        levelGenerator.GenerateLevel(10, 10, 10, 0.5f, 0.75f);
+    }
 
     private void Update()
     {
@@ -16,9 +23,9 @@ public class Player : MonoBehaviour
         movement = input * playerSpeed;
 
         //adjusts parameters for animation
-        animator.SetFloat("Horizontal", input.x);
-        animator.SetFloat("Vertical", input.y);
-        animator.SetFloat("Magnitude", input.magnitude);
+        //animator.SetFloat("Horizontal", input.x);
+        //animator.SetFloat("Vertical", input.y);
+        //animator.SetFloat("Magnitude", input.magnitude);
     }
 
     private void FixedUpdate()
