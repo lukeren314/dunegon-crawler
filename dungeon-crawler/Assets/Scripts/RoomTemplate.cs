@@ -13,8 +13,8 @@ public class RoomTemplate
         SPAWN,
         EXIT
     }
-
     public RoomType roomType;
+
     public enum DoorDirection
     {
         LEFT,
