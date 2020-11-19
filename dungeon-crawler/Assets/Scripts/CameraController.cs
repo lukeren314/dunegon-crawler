@@ -12,7 +12,7 @@ public class CameraController : MonoBehaviour
 	private const float CAMERA_ZOOM_SPEED = 2.0f;
 	private const float CAMERA_ZOOM_SMOOTH_SPEED = 0.125f;
 
-	public Camera camera;
+	public new Camera camera;
     public GameObject targetObject;
 
 	private Vector3 velocity = Vector3.zero;
