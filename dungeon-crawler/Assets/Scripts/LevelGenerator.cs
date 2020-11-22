@@ -2,11 +2,16 @@
 using System.Collections.Generic;
 using System;
 using UnityEngine;
-using System.Linq;
 
 public class LevelGenerator
 {
+    private const int DEFAULT_LEVEL_COLS = 10;
+    private const int DEFAULT_LEVEL_ROWS = 10;
+    private const int DEFAULT_LEVEL_MAIN_LENGTH = 10;
+    private const float DEFAULT_LEVEL_OFFSHOOT_TEMPERATURE = 0.25f;
+    private const float DEFAULT_LEVEL_OFFSHOOT_LENGTH_TEMPERATURE = 0.75f;
     private const int MAX_SEED = 2 << 16; // 2^32
+
     private System.Random rand;
     private int seed;
     public LevelGenerator(int seed = -1)
@@ -18,24 +23,30 @@ public class LevelGenerator
         }
         rand = new System.Random(this.seed);
     }
-    public void GenerateLevel(int cols, int rows, int mainLength, float offshootTemperature, float offshootLengthTemperature)
-    {
-        LevelTemplate levelTemplate = GenerateLevelTemplate(cols, rows, mainLength, offshootTemperature, offshootLengthTemperature);
-        CreateFromLevelTemplate(levelTemplate);
-    }
 
-    private LevelTemplate GenerateLevelTemplate(int cols, int rows, int mainLength, float offshootTemperature, float offshootLengthTemperature)
+    public LevelTemplate GenerateLevelTemplate( int cols = DEFAULT_LEVEL_COLS, 
+                                                int rows = DEFAULT_LEVEL_ROWS, 
+                                                int mainLength = DEFAULT_LEVEL_MAIN_LENGTH, 
+                                                float offshootTemperature = DEFAULT_LEVEL_OFFSHOOT_TEMPERATURE, 
+                                                float offshootLengthTemperature = DEFAULT_LEVEL_OFFSHOOT_LENGTH_TEMPERATURE)
     {
         LevelTemplate levelTemplate = new LevelTemplate(cols, rows);
 
         levelTemplate.SetSpawn(new int[] { cols / 2, rows / 2 });
         SetFirstMain(levelTemplate);
 
+        // connect the spawn to the first main room
+        ConnectRooms(levelTemplate, levelTemplate.GetSpawnCoords(), levelTemplate.GetMainHead());
+
         for (int i = 0; i < mainLength; i++)
         {
             ProceedMain(levelTemplate);
         }
         levelTemplate.SetExit();
+
+        // connect the exit to the last main room
+        ConnectRooms(levelTemplate, levelTemplate.GetMainHead(), levelTemplate.GetExitCoords());
+
         List<int[]> mainCoords = levelTemplate.GetMainCoords();
         foreach (int[] mainCoord in mainCoords)
         {
@@ -77,7 +88,7 @@ public class LevelGenerator
 
     private void SetFirstMain(LevelTemplate levelTemplate)
     {
-        int[][] surroundingCoords = GetSurroundingCoords(levelTemplate.GetSpawn());
+        int[][] surroundingCoords = GetSurroundingCoords(levelTemplate.GetSpawnCoords());
         int[] firstMainCoords = surroundingCoords[rand.Next(surroundingCoords.Length)];
         levelTemplate.SetMain(firstMainCoords);
     }
@@ -102,7 +113,7 @@ public class LevelGenerator
         int[][] surroundingCoords = GetSurroundingCoords(coords);
         foreach (int[] surroundingCoord in surroundingCoords)
         {
-            if (levelTemplate.IsInside(surroundingCoord) && levelTemplate.GetMap(surroundingCoord).roomType == roomType)
+            if (levelTemplate.IsInside(surroundingCoord) && levelTemplate.GetMap(surroundingCoord).GetRoomType() == roomType)
             {
                 surroundingAvailableCoords.Add(surroundingCoord);
             }
@@ -136,11 +147,6 @@ public class LevelGenerator
         ConnectRooms(lastHead, levelTemplate.GetMap(nextMainCoords));
     }
 
-    private void CreateFromLevelTemplate(LevelTemplate levelTemplate)
-    {
-        Debug.Log("Seed: "+seed+"\n"+levelTemplate.ToString());
-    }
-
     private List<int[]> GetNextMainCoords(LevelTemplate levelTemplate, int[] mainHeadCoords)
     {
         List<int[]> availableCoords = new List<int[]>();
@@ -158,10 +164,15 @@ public class LevelGenerator
         return availableCoords;
     }
 
+    private void ConnectRooms(LevelTemplate levelTemplate, int[] fromRoomCoords, int[] toRoomCoords)
+    {
+        ConnectRooms(levelTemplate.GetMap(fromRoomCoords), levelTemplate.GetMap(toRoomCoords));
+    }
+
     private void ConnectRooms(RoomTemplate fromRoom, RoomTemplate toRoom)
     {
-        int[] fromCoords = fromRoom.coords;
-        int[] toCoords = toRoom.coords;
+        int[] fromCoords = fromRoom.GetCoords();
+        int[] toCoords = toRoom.GetCoords();
         if (fromCoords[0] < toCoords[0])
         {
             fromRoom.AddDoorDirection(RoomTemplate.DoorDirection.RIGHT);
@@ -190,7 +201,7 @@ public class LevelGenerator
             if (surroundingCoord != previousCoords && levelTemplate.IsInside(surroundingCoord)) 
             {
                 RoomTemplate surroundingRoom = levelTemplate.GetMap(surroundingCoord);
-                if (surroundingRoom.roomType == RoomTemplate.RoomType.MAIN || surroundingRoom.roomType == RoomTemplate.RoomType.OFFSHOOT)
+                if (surroundingRoom.GetRoomType() == RoomTemplate.RoomType.MAIN || surroundingRoom.GetRoomType() == RoomTemplate.RoomType.OFFSHOOT)
                 {
 
                     potentialRooms.Add(surroundingRoom);

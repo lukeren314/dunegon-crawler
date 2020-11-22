@@ -6,15 +6,14 @@ public class Player : MonoBehaviour
 {
     //public Animator animator;
     public Rigidbody2D rb;
+    public Map map;
 
     private const float playerSpeed = 4.0f;
     private Vector2 movement;
-    private LevelGenerator levelGenerator;
 
     private void Start()
     {
-        levelGenerator = new LevelGenerator();
-        levelGenerator.GenerateLevel(10, 10, 10, 0.5f, 0.75f);
+        transform.position = map.GetSpawnPoint();
     }
 
     private void Update()

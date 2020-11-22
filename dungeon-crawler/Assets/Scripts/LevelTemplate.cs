@@ -18,6 +18,17 @@ public class LevelTemplate
         this.rows = rows;
         ResetMap();
     }
+
+    public int GetCols()
+    {
+        return cols;
+    }
+
+    public int GetRows()
+    {
+        return rows;
+    }
+
     public RoomTemplate GetMap(int[] coords)
     {
         return map[coords[0]][coords[1]];
@@ -28,7 +39,7 @@ public class LevelTemplate
         map[coords[0]][coords[1]] = roomTemplate;
     }
 
-    public int[] GetSpawn()
+    public int[] GetSpawnCoords()
     {
         return spawnCoords;
     }
@@ -61,10 +72,16 @@ public class LevelTemplate
         offShootCoords.Add(coords);
     }
 
+    public int[] GetExitCoords()
+    {
+        return exitCoords;
+    }
+
     public void SetExit()
     {
-        int[] exitCoords = mainCoords[mainCoords.Count - 1];
-        GetMap(exitCoords).SetRoomType(RoomTemplate.RoomType.EXIT);
+        exitCoords = mainCoords[mainCoords.Count - 1];
+        SetMap(exitCoords, new RoomTemplate(exitCoords, RoomTemplate.RoomType.EXIT));
+        mainCoords.RemoveAt(mainCoords.Count - 1);
     }
 
     public override string ToString()
@@ -92,7 +109,7 @@ public class LevelTemplate
 
     public bool IsAvailableRoomType(int[] coords)
     {
-        RoomTemplate.RoomType roomType = GetMap(coords).roomType;
+        RoomTemplate.RoomType roomType = GetMap(coords).GetRoomType();
         switch (roomType)
         {
             case RoomTemplate.RoomType.EMPTY:
