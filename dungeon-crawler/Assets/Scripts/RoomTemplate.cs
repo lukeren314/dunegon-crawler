@@ -19,6 +19,7 @@ public class RoomTemplate
         SPAWN,
         EXIT
     }
+
     private RoomType roomType;
 
     public enum DoorDirection
@@ -37,8 +38,10 @@ public class RoomTemplate
         WALL,
         DOOR,
         SPAWN,
-        EXIT
+        EXIT,
+        TRIGGER
     }
+
     private TileType[][] tiles;
 
     private HashSet<DoorDirection> doorDirections;
@@ -221,6 +224,10 @@ public class RoomTemplate
         // generate the door on the side of the wall
         GenerateVerticalTiles(hallWidth, startRow + 1, startRow+DOOR_WIDTH, TileType.DOOR);
 
+        // generate the triggers next to the doors
+        GenerateVerticalTiles(hallWidth + 1, startRow + 1, startRow + DOOR_WIDTH, TileType.TRIGGER);
+
+
         // generate the walls of the hallway
         GenerateHorizontalTiles(startRow, startCol, startCol + hallWidth, TileType.WALL);
         GenerateHorizontalTiles(startRow+DOOR_WIDTH, startCol, startCol + hallWidth, TileType.WALL);
@@ -236,6 +243,10 @@ public class RoomTemplate
 
         // generate the door on the side of the wall
         GenerateVerticalTiles(startCol, startRow, startRow + DOOR_WIDTH, TileType.DOOR);
+
+        // generate the triggers next to the doors
+        GenerateVerticalTiles(startCol - 1, startRow, startRow + DOOR_WIDTH, TileType.TRIGGER);
+
 
         // generate the walls of the hallway
         GenerateHorizontalTiles(startRow, startCol, startCol + hallWidth, TileType.WALL);
@@ -253,6 +264,10 @@ public class RoomTemplate
         // generate the door on the side of the wall
         GenerateHorizontalTiles(hallWidth, startCol + 1, startCol + DOOR_WIDTH, TileType.DOOR);
 
+        // generate the triggers next to the doors
+        GenerateHorizontalTiles(hallWidth + 1, startCol + 1, startCol + DOOR_WIDTH, TileType.TRIGGER);
+
+
         // generate the walls of the hallway
         GenerateVerticalTiles(startCol, startRow, startRow + hallWidth, TileType.WALL);
         GenerateVerticalTiles(startCol + DOOR_WIDTH, startRow, startRow + hallWidth, TileType.WALL);
@@ -267,6 +282,9 @@ public class RoomTemplate
 
         // generate the door on the side of the wall
         GenerateHorizontalTiles(startRow, startCol, startCol + DOOR_WIDTH, TileType.DOOR);
+
+        // generate the triggers next to the doors
+        GenerateHorizontalTiles(startRow - 1, startCol, startCol + DOOR_WIDTH, TileType.TRIGGER);
 
         // generate the walls of the hallway
         GenerateVerticalTiles(startCol, startRow, startRow + hallWidth, TileType.WALL);

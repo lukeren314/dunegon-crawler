@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
 
     private const float playerSpeed = 4.0f;
     private Vector2 movement;
+    private Room currentRoom;
 
     private void Start()
     {
@@ -37,5 +38,19 @@ public class Player : MonoBehaviour
         float x = Input.GetAxis("Horizontal");
         float y = Input.GetAxis("Vertical");
         return new Vector3(x, y, 0.0f);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
+        GameObject otherObject = collider.gameObject;
+        if (otherObject.CompareTag("TriggerTile"))
+        {
+            currentRoom = otherObject.GetComponent<TriggerTile>().GetRoom();
+            currentRoom.ActivateDoors();
+        }
+        else if (otherObject.CompareTag("ExitTile"))
+        {
+            // generate another level
+        }
     }
 }

@@ -6,7 +6,6 @@ public class Map : MonoBehaviour
 {
     public GameObject roomPrefab;
     private Vector2 spawnPoint;
-
     public Vector2 GetSpawnPoint()
     {
         return spawnPoint;

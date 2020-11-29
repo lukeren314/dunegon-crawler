@@ -22,3 +22,5 @@ MonoBehaviour:
     type: 3}
   exitTile: {fileID: 3298644982709423962, guid: 44840d08c1bb4754a95be4e137d3432a,
     type: 3}
+  triggerTile: {fileID: 8792501945322322562, guid: 425d1e9d7eb2bdc44a32d725438fab96,
+    type: 3}

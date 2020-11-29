@@ -10,4 +10,5 @@ public class TileObjects : ScriptableObject
     public GameObject doorTile;
     public GameObject spawnTile;
     public GameObject exitTile;
+    public GameObject triggerTile;
 }

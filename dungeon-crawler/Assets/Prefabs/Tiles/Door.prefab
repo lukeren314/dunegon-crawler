@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1436208980090593566}
   - component: {fileID: 1436208980090593567}
-  - component: {fileID: 1436208980090593564}
   - component: {fileID: 1436208980090593565}
+  - component: {fileID: 7089947937356226321}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -72,7 +72,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 2249395081874814930, guid: 7ea8abaa4da25204fa95bff9200b7c51,
+  m_Sprite: {fileID: 2386947887777777099, guid: 7ea8abaa4da25204fa95bff9200b7c51,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -84,27 +84,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!50 &1436208980090593564
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1436208980090593538}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!61 &1436208980090593565
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -131,3 +110,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &7089947937356226321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1436208980090593538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e168a75cdb8aec4428c8fd0ad3e93a08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collider2d: {fileID: 1436208980090593565}
+  spriteRenderer: {fileID: 1436208980090593567}
+  floorSprite: {fileID: 2386947887777777099, guid: 7ea8abaa4da25204fa95bff9200b7c51,
+    type: 3}
+  doorSprite: {fileID: -8750472029756562105, guid: 7ea8abaa4da25204fa95bff9200b7c51,
+    type: 3}
