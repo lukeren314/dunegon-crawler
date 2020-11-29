@@ -149,7 +149,7 @@ public class RoomTemplate
         GenerateVerticalTiles(leftCol, topRow, topRow+height, TileType.WALL);
         GenerateVerticalTiles(leftCol+width, topRow, topRow+height, TileType.WALL);
         GenerateHorizontalTiles(topRow, leftCol, leftCol+width, TileType.WALL);
-        GenerateHorizontalTiles(topRow+height, leftCol, leftCol + width, TileType.WALL);
+        GenerateHorizontalTiles(topRow+height, leftCol, leftCol + width + 1, TileType.WALL);
     }
 
     private void GenerateVerticalTiles(int col, int startRow, int endRow, TileType tileType)
@@ -219,7 +219,7 @@ public class RoomTemplate
         GenerateRectangle(startCol, startRow, hallWidth, DOOR_WIDTH, TileType.FLOOR);
 
         // generate the door on the side of the wall
-        GenerateVerticalTiles(hallWidth, startRow, startRow+DOOR_WIDTH, TileType.DOOR);
+        GenerateVerticalTiles(hallWidth, startRow + 1, startRow+DOOR_WIDTH, TileType.DOOR);
 
         // generate the walls of the hallway
         GenerateHorizontalTiles(startRow, startCol, startCol + hallWidth, TileType.WALL);
@@ -251,7 +251,7 @@ public class RoomTemplate
         GenerateRectangle(startCol, startRow, DOOR_WIDTH, hallWidth, TileType.FLOOR);
 
         // generate the door on the side of the wall
-        GenerateHorizontalTiles(hallWidth, startCol, startCol + DOOR_WIDTH, TileType.DOOR);
+        GenerateHorizontalTiles(hallWidth, startCol + 1, startCol + DOOR_WIDTH, TileType.DOOR);
 
         // generate the walls of the hallway
         GenerateVerticalTiles(startCol, startRow, startRow + hallWidth, TileType.WALL);
