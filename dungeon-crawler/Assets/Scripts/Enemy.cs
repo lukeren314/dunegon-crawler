@@ -39,6 +39,10 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         Attack();
+        if (currentHealth <= 0)
+        {
+            Die(); //Maybe death animation.
+        }
     }
     void FixedUpdate()
     {    
@@ -85,5 +89,15 @@ public class Enemy : MonoBehaviour
     {
         transform.position = Vector2.MoveTowards(transform.position, target.position, currentSpeed * Time.deltaTime);
         currentSpeed = enemySpeed; // if speed was changed because of the Attack
+    }
+
+    private void Die()
+    {
+        Destroy(gameObject);
+    }
+
+    public void TakeDamage(float damage)
+    {
+        currentHealth -= damage;
     }
 }
