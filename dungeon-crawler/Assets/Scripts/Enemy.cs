@@ -36,7 +36,7 @@ public class Enemy : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         Attack();
         if (currentHealth <= 0)
@@ -44,7 +44,7 @@ public class Enemy : MonoBehaviour
             Die(); //Maybe death animation.
         }
     }
-    void FixedUpdate()
+    private void FixedUpdate()
     {    
         FollowPlayer();
     }
