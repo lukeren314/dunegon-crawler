@@ -718,18 +718,8 @@ MonoBehaviour:
   map: {fileID: 648519562}
   enemyName: PurpleMan
   maxHealth: 10
-<<<<<<< Updated upstream
   enemySpeed: 3
   enemyDamage: 2
-=======
-<<<<<<< HEAD
-  enemySpeed: 5
-  enemyDamage: 0
-=======
-  enemySpeed: 3
-  enemyDamage: 2
->>>>>>> cec9d011b7d8c04ae182c30f75d2c03f7f2508b4
->>>>>>> Stashed changes
   attackRange: 3
   inRangeSpeed: 1
   attackCooldown: 5
