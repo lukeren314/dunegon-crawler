@@ -415,7 +415,7 @@ MonoBehaviour:
   enemyName: Ranged
   maxHealth: 10
   enemySpeed: 3
-  enemyDamage: 0
+  enemyDamage: 2
   attackRange: 3
   inRangeSpeed: 1
   attackCooldown: 5
@@ -501,6 +501,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 539600274}
   map: {fileID: 648519562}
+  maxHealth: 10
 --- !u!212 &539600276
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -12,9 +12,13 @@ public class Player : MonoBehaviour
     private Vector2 movement;
     private Room currentRoom;
 
+    public float maxHealth;
+    private float currentHealth;
+
     private void Start()
     {
         transform.position = map.GetSpawnPoint();
+        currentHealth = maxHealth;
     }
 
     private void Update()
@@ -53,4 +57,20 @@ public class Player : MonoBehaviour
             // generate another level
         }
     }
+
+    private void takeDamage(float damage)
+    {
+        currentHealth -= damage;
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+    }
+
+    private void Die()
+    {
+        Debug.Log("You have Died!");
+        Destroy(gameObject);
+    }
+
 }

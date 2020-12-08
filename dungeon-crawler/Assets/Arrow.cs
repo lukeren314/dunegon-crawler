@@ -13,13 +13,13 @@ public class Arrow : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         Destroy(gameObject, lifeTime);
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, transform.up, distance, solids);
         if (hitInfo.collider != null)
