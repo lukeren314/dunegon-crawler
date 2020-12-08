@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    //public Animator animator;
+    public Animator animator;
     public Rigidbody2D rb;
     public Map map;
 
@@ -27,9 +27,9 @@ public class Player : MonoBehaviour
         movement = input * playerSpeed;
 
         //adjusts parameters for animation
-        //animator.SetFloat("Horizontal", input.x);
-        //animator.SetFloat("Vertical", input.y);
-        //animator.SetFloat("Magnitude", input.magnitude);
+        animator.SetFloat("Horizontal", input.x);
+        animator.SetFloat("Vertical", input.y);
+        animator.SetFloat("Magnitude", input.magnitude);
     }
 
     private void FixedUpdate()
